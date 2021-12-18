@@ -2,9 +2,11 @@
 
 Our Live Website [Oobliss](https://niche-website-49a8d.web.app/).
 
-### ● Oobliss is a niche product-related MERN stack website.
+### ● Oobliss is a single product-related MERN stack website.
 
 ### ● An authentication system is added to this website so that users can login, if the user login they can buy products and manage their orders.
+
+### ● Payment system stripe also added, so that the user pays through stripe. Also, the admin can see which user complete their payment or not.
 
 ### ● The users will be able to give reviews and the review will be displayed on the home page.
 
