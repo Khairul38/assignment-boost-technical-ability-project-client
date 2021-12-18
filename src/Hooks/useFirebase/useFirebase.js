@@ -20,7 +20,7 @@ const useFirebase = () => {
     const googleProvider = new GoogleAuthProvider();
 
     /* Google Login/Register */
-    const loginUsingGoogle = (location, history) => {
+    const loginUsingGoogle = (location, navigate) => {
         setIsLoading(true);
         signInWithPopup(auth, googleProvider)
             .then(result => {
@@ -29,7 +29,7 @@ const useFirebase = () => {
                 saveUser(user.email, user.displayName, 'PUT');
                 setError('');
                 const redirect = location?.state?.from || '/';
-                history.replace(redirect);
+                navigate(redirect);
             })
             .catch(error => {
                 setError(error.message);
@@ -51,7 +51,7 @@ const useFirebase = () => {
     }
 
     /* Email+Password Registration */
-    const handleRegistration = (email, password, name, location, history) => {
+    const handleRegistration = (email, password, name, location, navigate) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then(result => {
@@ -62,7 +62,7 @@ const useFirebase = () => {
                 saveUser(email, name, 'POST');
                 setError('');
                 const redirect = location?.state?.from || '/';
-                history.replace(redirect);
+                navigate(redirect);
             })
             .catch(error => {
                 setError(error.message);
@@ -71,14 +71,14 @@ const useFirebase = () => {
     }
 
     /* Email+Password Login */
-    const handleLogin = (email, password, location, history) => {
+    const handleLogin = (email, password, location, navigate) => {
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then(result => {
                 setUser(result.user);
                 setError('');
                 const redirect = location?.state?.from || '/';
-                history.replace(redirect);
+                navigate(redirect);
             })
             .catch(error => {
                 setError(error.message);

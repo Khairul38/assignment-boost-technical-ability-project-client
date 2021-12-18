@@ -9,7 +9,6 @@ import IconButton from '@mui/material/IconButton';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-// import PaymentsIcon from '@mui/icons-material/Payments';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -26,19 +25,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { HashLink } from 'react-router-hash-link';
-import { Link, useRouteMatch, Switch, Route } from 'react-router-dom';
-import DashboardHome from '../DashboardHome/DashboardHome';
-import MakeAdmin from '../MadeAdmin/MakeAdmin';
-import AddProduct from '../AddProduct/AddProduct';
+import { Link, Outlet } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth/useAuth';
-import ManageProducts from '../ManageProducts/ManageProducts';
-import ManageAllOrders from '../ManageAllOrders/ManageAllOrders';
-import Review from '../Review/Review';
-import Pay from '../Pay/Pay';
-import MyOrders from '../MyOrders/MyOrders';
-import AdminRoute from '../../../AdminRoute/AdminRoute';
 import Footer from '../../Footer/Footer';
-import DashNotFound from '../DashNotFound/DashNotFound';
 
 const drawerWidth = 230;
 
@@ -48,7 +37,7 @@ function Dashboard(props) {
     const { allContext } = useAuth();
     const { admin, logout, ColorButton, user } = allContext;
 
-    let { path, url } = useRouteMatch();
+    // let { path, url } = useRouteMatch();
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -64,7 +53,7 @@ function Dashboard(props) {
             <Divider />
             <Toolbar />
             <List>
-                <Link style={{ textDecoration: 'none', color:'#EC9C31' }} to="/">
+                <Link style={{ textDecoration: 'none', color: '#EC9C31' }} to="/">
                     <ListItem button>
                         <ListItemIcon sx={{ color: 'black' }}>
                             <HomeIcon />
@@ -74,7 +63,7 @@ function Dashboard(props) {
                         </ListItemText>
                     </ListItem>
                 </Link>
-                <Link style={{ textDecoration: 'none', color: '#EC9C31' }} to={`${url}`}>
+                <Link style={{ textDecoration: 'none', color: '#EC9C31' }} to="/dashboard">
                     <ListItem button>
                         <ListItemIcon sx={{ color: 'black' }}>
                             <DashboardIcon />
@@ -95,7 +84,7 @@ function Dashboard(props) {
                     </ListItem>
                 </Link>
                 {!admin ? <Box>
-                    <Link style={{ textDecoration: 'none', color: '#EC9C31' }} to={`${url}/myOrders`}>
+                    <Link style={{ textDecoration: 'none', color: '#EC9C31' }} to={`/dashboard/myOrders`}>
                         <ListItem button>
                             <ListItemIcon sx={{ color: 'black' }}>
                                 <ShoppingCartIcon />
@@ -115,7 +104,7 @@ function Dashboard(props) {
                             </ListItemText>
                         </ListItem>
                     </Link> */}
-                    <Link style={{ textDecoration: 'none', color: '#EC9C31' }} to={`${url}/review`}>
+                    <Link style={{ textDecoration: 'none', color: '#EC9C31' }} to={`/dashboard/review`}>
                         <ListItem button>
                             <ListItemIcon sx={{ color: 'black' }}>
                                 <ReviewsIcon />
@@ -128,7 +117,7 @@ function Dashboard(props) {
                 </Box>
                     :
                     <Box>
-                        <Link style={{ textDecoration: 'none', color: '#EC9C31' }} to={`${url}/manageAllOrders`}>
+                        <Link style={{ textDecoration: 'none', color: '#EC9C31' }} to={`/dashboard/manageAllOrders`}>
                             <ListItem button>
                                 <ListItemIcon sx={{ color: 'black' }}>
                                     <SettingsApplicationsIcon />
@@ -138,7 +127,7 @@ function Dashboard(props) {
                                 </ListItemText>
                             </ListItem>
                         </Link>
-                        <Link style={{ textDecoration: 'none', color: '#EC9C31' }} to={`${url}/manageProducts`}>
+                        <Link style={{ textDecoration: 'none', color: '#EC9C31' }} to={`/dashboard/manageProducts`}>
                             <ListItem button>
                                 <ListItemIcon sx={{ color: 'black' }}>
                                     <SettingsIcon />
@@ -148,7 +137,7 @@ function Dashboard(props) {
                                 </ListItemText>
                             </ListItem>
                         </Link>
-                        <Link style={{ textDecoration: 'none', color: '#EC9C31' }} to={`${url}/addProduct`}>
+                        <Link style={{ textDecoration: 'none', color: '#EC9C31' }} to={`/dashboard/addProduct`}>
                             <ListItem button>
                                 <ListItemIcon sx={{ color: 'black' }}>
                                     <AddCircleIcon />
@@ -158,9 +147,9 @@ function Dashboard(props) {
                                 </ListItemText>
                             </ListItem>
                         </Link>
-                        <Link style={{ textDecoration: 'none', color: '#EC9C31' }} to={`${url}/makeAdmin`}>
+                        <Link style={{ textDecoration: 'none', color: '#EC9C31' }} to={`/dashboard/makeAdmin`}>
                             <ListItem button>
-                                <ListItemIcon sx={{ color: 'black'}}>
+                                <ListItemIcon sx={{ color: 'black' }}>
                                     <AdminPanelSettingsIcon />
                                 </ListItemIcon>
                                 <ListItemText >
@@ -255,35 +244,7 @@ function Dashboard(props) {
                 sx={{ flexGrow: 1, p: 0, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
-                <Switch>
-                    <Route exact path={path}>
-                        <DashboardHome></DashboardHome>
-                    </Route>
-                    <Route path={`${path}/myOrders`}>
-                        <MyOrders></MyOrders>
-                    </Route>
-                    <Route path={`${path}/pay/:orderId`}>
-                        <Pay></Pay>
-                    </Route>
-                    <Route path={`${path}/review`}>
-                        <Review></Review>
-                    </Route>
-                    <AdminRoute path={`${path}/manageAllOrders`}>
-                        <ManageAllOrders></ManageAllOrders>
-                    </AdminRoute>
-                    <AdminRoute path={`${path}/manageProducts`}>
-                        <ManageProducts></ManageProducts>
-                    </AdminRoute>
-                    <AdminRoute path={`${path}/addProduct`}>
-                        <AddProduct></AddProduct>
-                    </AdminRoute>
-                    <AdminRoute path={`${path}/makeAdmin`}>
-                        <MakeAdmin></MakeAdmin>
-                    </AdminRoute>
-                    <Route path={`${path}/*`}>
-                        <DashNotFound></DashNotFound>
-                    </Route>
-                </Switch>
+                <Outlet></Outlet>
                 <Footer></Footer>
             </Box>
         </Box>

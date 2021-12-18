@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import icon1 from '../../Images/icon/google-icon.png';
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth/useAuth';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -16,7 +16,7 @@ const Login = () => {
 
     /* Redirect */
     const location = useLocation();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     /* Login data */
     const handleOnChange = e => {
@@ -29,13 +29,13 @@ const Login = () => {
 
     /* Google Login & Redirect */
     const handleGoogleLogin = () => {
-        loginUsingGoogle(location, history);
+        loginUsingGoogle(location, navigate);
     }
 
     /* Email+Password Login & Redirect */
     const loginSubmit = (e) => {
         e.preventDefault();
-        handleLogin(loginData.email, loginData.password, location, history);
+        handleLogin(loginData.email, loginData.password, location, navigate);
     }
     return (
         <>
