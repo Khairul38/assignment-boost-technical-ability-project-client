@@ -5,7 +5,7 @@ import logo2 from '../../Images/logo-2.png'
 const Footer = () => {
     return (
         <div className="bg-image text-center">
-            <div className="mb-4">
+            <div data-aos="fade-left" className="mb-4">
                 <img width="" src={logo2} alt="" />
             </div>
             <div>

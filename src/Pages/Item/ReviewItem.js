@@ -5,7 +5,7 @@ import { Avatar, Rating } from '@mui/material';
 const ReviewItem = (props) => {
     const { name, email, description, rating, img } = props.review;
     return (
-        <div>
+        <div data-aos="flip-left">
             <Col className="shadow-lg">
                 <Card className="hover-card p-3">
                     <Row className=" align-items-center">

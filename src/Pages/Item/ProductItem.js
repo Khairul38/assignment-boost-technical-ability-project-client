@@ -9,7 +9,7 @@ const ProductItem = (props) => {
     const { allContext } = useAuth();
     const { ColorButton } = allContext;
     return (
-        <div>
+        <div data-aos="zoom-in-up">
             <Col className="shadow-lg text-center">
                 <Card className="hover-card">
                     <Card.Img variant="top" src={img} />

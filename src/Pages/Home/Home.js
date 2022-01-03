@@ -24,11 +24,11 @@ const Home = () => {
         <div>
             <Header></Header>
             <div className="banner banner-size ps-5">
-                <h1>AVIATOR <br /> VERRES ICEBERG <br /> GLASSES</h1>
-                <h5>Looked up one of the more obscure latin world</h5>
+                <h1 data-aos="fade-right">AVIATOR <br /> VERRES ICEBERG <br /> GLASSES</h1>
+                <h5 data-aos="fade-left">Looked up one of the more obscure latin world</h5>
             </div>
             <div className="container">
-                <div className="my-5 text-center">
+                <div data-aos="fade-up" className="my-5 text-center">
                     <h1 className="fw-bold">MOST POPULAR <span className="text-color">PRODUCTS</span> </h1>
                     <h5>SELECT THE BEST PRODUCT FOR YOU</h5>
                 </div>
@@ -36,7 +36,7 @@ const Home = () => {
                     <Box sx={{ display: 'flex', justifyContent: 'center', my: 8 }}>
                         <CircularProgress sx={{ color: '#EC9C31'}} />
                     </Box>
-                :<div className="container">
+                    : <div className="container">
                     <Row xs={1} md={3} className="g-5 mb-5 p-4">
                         {
                             newProducts.map(product => <ProductItem key={product._id} product={product}></ProductItem>)
@@ -85,7 +85,7 @@ const Home = () => {
                 </Carousel>
             </div>
             <div className="container">
-                <div className="my-5 text-center">
+                <div data-aos="fade-up" className="my-5 text-center">
                     <h1 className="fw-bold">CUSTOMER <span className="text-color">REVIEWS</span></h1>
                     <h5>YOUR FEEDBACK OUR INSPIRATION</h5>
                 </div>
